@@ -1,0 +1,13 @@
+En ajoutant ça au fichier on le rend com visible
+
+namespace <namespace> {
+    [ComVisible(true)]
+    [InterfaceType(ComInterfaceType.InterfaceIsIDispatch)]
+    [Guid("")]
+    public interface IName {
+      [DispId(1)]
+      Type Name{get;}
+      [DispId(2)]
+      Type Name{get;}
+    }
+}
