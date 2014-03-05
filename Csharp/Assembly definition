@@ -23,7 +23,8 @@ using System.Runtime.InteropServices;
 
 
 //assembly friends 
-//This code is internal
+//This code makes the other assembly friend of this one, thus all internal classes of this assembly are 
+// only visible to it's friend)
 [assembly: InternalsVisibleTo("Other assembly")]
 
 Ce fichier est généré par maven
