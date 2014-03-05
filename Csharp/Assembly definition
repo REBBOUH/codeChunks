@@ -1,0 +1,38 @@
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
+[assembly: AssemblyCompany("company")]
+[assembly: AssemblyCopyright("Copyright")]
+[assembly: AssemblyProduct("Product name")]
+
+//assembly name
+
+[assembly: AssemblyTitle("Assembly name")]
+[assembly: AssemblyDescription("Description")]
+
+//assembly version aka api version must be the same as typelib version
+
+[assembly: AssemblyVersion("2.1.0.0")]
+[assembly: TypeLibVersion(2, 1)]
+
+//assembly com stuff
+
+[assembly: ComVisible(false)]
+[assembly: Guid("GUID")]
+
+
+//assembly friends 
+//This code is internal
+[assembly: InternalsVisibleTo("Other assembly")]
+
+Ce fichier est généré par maven
+==============================================================
+
+using System.Reflection;
+
+[assembly:AssemblyInformationalVersion("version name")]
+[assembly:AssemblyFileVersion("version number")]
+[assembly:<Custom>Build(Revision="git commit prefix",Author="author of commit", Date="date",Hostname="host name")]
+
+		
