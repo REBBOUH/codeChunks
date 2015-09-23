@@ -22,3 +22,25 @@
             logger.error(e.getMessage(), e);
         }
     }
+
+
+    public void store(String dictionaryName, final Dictionary dictionary) {
+        if (dictionary == null) {
+            logger.error("The given dictionary is null.");
+            return;
+        }
+        if (isBlank(dictionaryName) || dictionary.getSize() == 0) {
+            logger.error("Dictionary name is blank or dictionary is empty.");
+            return;
+        }
+        // delete the old file.
+        delete(dictionaryName);
+        GridFSInputFile file = store.createFile(dictionaryName);
+        try (ObjectOutputStream out = new ObjectOutputStream(new GZIPOutputStream(file.getOutputStream()))) {
+            dictionaryToStream(dictionary, out);
+        } catch (IOException e) {
+            logger.error(e.getMessage(), e);
+            return;
+        }
+        file.save();
+    }
