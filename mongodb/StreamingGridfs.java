@@ -44,3 +44,19 @@
         }
         file.save();
     }
+
+
+
+    public void storeFromHTTP(String dictionaryName, final InputStream httpInputStream) {
+        if (in == null) {
+            throw new NullPointerException("The given input stream is null, dictionary " + dictionaryName +" can't be stored.");
+        }
+        if (isBlank(dictionaryName)) {
+            logger.error("Dictionary name is blank!.");
+            return;
+        }
+        // delete the old file.
+        delete(dictionaryName);
+        GridFSInputFile file = store.createFile(httpInputStream, dictionaryName);
+        file.save();
+    }
