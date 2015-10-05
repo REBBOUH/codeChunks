@@ -1,14 +1,9 @@
 
-    /**
-     * This method returns a basic object that contains the key and the value given in the parameters.
-     */
-    protected DBObject getBasicDBObject(K key, V value) {
-        return new BasicDBObject(KEY, keySerializer.serialize(key))
-                .append(VALUE, valueSerializer.serialize(value));
+public class JobQueueStore implements QueueStore<Job> {
+    @Override public void store(Long id, Job value) {
+        dbCollection.update(getCriteria(id), getBasicDBObject(key, value), true, false);
     }
-
-    //region Store Methods
-    public void store(K key, V value) {
-        BasicDBObject criteria = new BasicDBObject(KEY, keySerializer.serialize(key));
-        dbCollection.update(criteria, getBasicDBObject(key, value), true, false);
+    @Override public void delete(Long key) {
+        // delete the job from the collection using it's id.
     }
+    // ...
