@@ -1,3 +1,4 @@
+
     @Nullable
     private static InputStream executeRequest(WebTarget target, Entity entity, boolean acceptGzip) {
         InputStream stream = null;
