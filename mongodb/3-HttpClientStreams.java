@@ -20,7 +20,9 @@
     public Response sendStore(@PathParam("date") final String date) {
         final LocalDate storeDate = parse(date);
         if (names == null || names.isEmpty()) {
-            return noContent().entity("No elements found for this store " + date).build();
+            return noContent()
+            .entity("No elements found for this store " + date)
+            .build();
         }
         return ok((OutputStream output)-> {
             // Send request to database and stream the cursor
