@@ -17,24 +17,13 @@
     @GET
     @Path("/{date}")
     @Produces(MediaType.TEXT_PLAIN)
-    public Response sendStore(
-            @PathParam("date") final String date,
-            @QueryParam("name") final List<String> names
-    ) {
-        final LocalDate storeDate;
-        try {
-            storeDate = parse(date);
-        } catch (IllegalArgumentException e) {
-            return ServerApiUtils.buildErrorResponse("Invalid date " + date + " please use this format yyyy-MM-dd Ex : 2015-01-22.");
-        }
+    public Response sendStore(@PathParam("date") final String date) {
+        final LocalDate storeDate = parse(date);
         if (names == null || names.isEmpty()) {
             return noContent().entity("No elements found for this store " + date).build();
         }
-        return ok(new StreamingOutput() {
-            @Override
-            public void write(OutputStream output) throws IOException, WebApplicationException {
-                // Send request to database and stream the cursor results or use reactive-streams for ex.
-                output.close();
-            }
+        return ok((OutputStream output)-> {
+            // Send request to database and stream the cursor results or use reactive-streams for ex.
+            output.close();
         }).build();
     }
