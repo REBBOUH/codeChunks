@@ -1,11 +1,4 @@
     public void store(String dictionaryName, final Dictionary dictionary) {
-        if (dictionary == null) {
-            throw new NullPointerException("The given dictionary " + dictionaryName + "is null.");
-        }
-        if (isBlank(dictionaryName) || dictionary.getSize() == 0) {
-            logger.error("Dictionary name is blank or dictionary is empty.");
-            return;
-        }
         try (PipedInputStream in = new PipedInputStream()) {
             final PipedOutputStream out = new PipedOutputStream(in);
             executor.execute(() -> {
@@ -47,16 +40,9 @@
 
 
 
-    public void storeFromHTTP(String dictionaryName, final InputStream httpInputStream) {
-        if (in == null) {
-            throw new NullPointerException("The given input stream is null, dictionary " + dictionaryName +" can't be stored.");
-        }
-        if (isBlank(dictionaryName)) {
-            logger.error("Dictionary name is blank!.");
-            return;
-        }
+    public void storeFromHTTP(String requestId, final InputStream is) {
         // delete the old file.
-        delete(dictionaryName);
-        GridFSInputFile file = store.createFile(httpInputStream, dictionaryName);
+        delete(requestId);
+        GridFSInputFile file = store.createFile(is, requestId);
         file.save();
     }
