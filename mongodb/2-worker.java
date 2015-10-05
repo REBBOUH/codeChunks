@@ -6,7 +6,6 @@
         if (jobQueue == null) {
             throw new IllegalStateException("Unable to create queue on store.");
         }
-        threadName = currentThread().getName();
         while (!interrupted()) {
             T job = null;
             try {
