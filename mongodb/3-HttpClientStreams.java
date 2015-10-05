@@ -1,10 +1,10 @@
 
     @Nullable
-    private static InputStream executeRequest(WebTarget target, Entity entity, boolean acceptGzip) {
+    private static InputStream executeRequest(WebTarget target, Entity entity) {
         InputStream stream = null;
         if (entity != null) {
             long start = currentTimeMillis();
-            stream = getRequest(target, acceptGzip)
+            stream = getRequest(target)
                     .accept(APPLICATION_OCTET_STREAM_TYPE)
                     .post(entity, InputStream.class);
             logger.info("Request took {} s", MILLISECONDS.toSeconds(currentTimeMillis() - start));
