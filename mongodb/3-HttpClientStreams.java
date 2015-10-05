@@ -7,7 +7,8 @@
             stream = getRequest(target)
                     .accept(APPLICATION_OCTET_STREAM_TYPE)
                     .post(entity, InputStream.class);
-            logger.info("Request took {} s", MILLISECONDS.toSeconds(currentTimeMillis() - start));
+            logger.info("Request took {} s", 
+                MILLISECONDS.toSeconds(currentTimeMillis() - start));
         }
         return stream;
     }
